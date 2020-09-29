@@ -42,6 +42,8 @@ public class ProjectCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private FlowPane tasks;
+    @FXML
+    private Label remark;
 
     /**
      * Creates a {@code ProjectCode} with the given {@code Project} and index to display.
