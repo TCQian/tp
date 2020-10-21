@@ -91,12 +91,12 @@ The hierarchy of command scoping is as follows:
 * `CATALOGUE` (i.e. global)
   * `PROJECT`
     * `TASK`
-  * `PERSON`
+    * `PERSON`
 
 <br>A lower-level scope always belongs to any parent scopes. For example, if the app is currently in `PROJECT`
-scope, it is also in the `CATALOGUE` scope. However, it is not necessarily in `TASK` scope because 
-`TASK` is a child level of `PROJECT` and it is definitely not in `PERSON` scope because `PERSON` 
-is parallel to `PROJECT`.
+scope, it is also in the `CATALOGUE` scope. However, it is not necessarily in `TASK` and `PERSON` scope because 
+`TASK` and `PERSON` is a child level of `PROJECT`. `TASK` is definitely not in `PERSON` scope because `PERSON` 
+is parallel to `TASK`, vice versa.
 
 </div>
 
