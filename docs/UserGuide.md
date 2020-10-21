@@ -37,7 +37,9 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
     - Remove a teammate in the project `remove teammate `
     - View tasks allocated to a particular teammate `task participants `
   - Scoping related features 
-    - Return to main catalogue `leave`
+    - Return to main catalogue `leaveProjectView`
+    - Return to project catalogue from task catalogue `leaveTaskView`
+    - Return to project catalogue from teammate catalogue `leaveTeammateView`
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
@@ -92,8 +94,9 @@ The hierarchy of command scoping is as follows:
   * `PERSON`
 
 <br>A lower-level scope always belongs to any parent scopes. For example, if the app is currently in `PROJECT`
-scope, it is also in the `CATALOGUE` scope. However, it is not necessarily in `TASK` scope because `TASK` is
-a child level of `PROJECT` and it is definitely not in `PERSON` scope because `PERSON` is parallel to `PROJECT`.
+scope, it is also in the `CATALOGUE` scope. However, it is not necessarily in `TASK` scope because 
+`TASK` is a child level of `PROJECT` and it is definitely not in `PERSON` scope because `PERSON` 
+is parallel to `PROJECT`.
 
 </div>
 
@@ -115,8 +118,8 @@ TEAM is any number of names separated by “ “ spaces.
 
 Examples: `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas Jiayu` Adds a new project with the projectName Taskmania, due date 9 Sep 2020 with team members, Niaaz, Lucas and Jiayu.
 
-### Starting work on an existing project `start `
-Initialises the project specified.
+### Starting work on an existing project and check the project dashboard `start `
+Initialises the project specified and show a summary of the important information regarding the project.
 
 Format: `start INDEX`
 - Initialises the project at the specified INDEX.
@@ -128,10 +131,14 @@ Examples: `start 2` Initialises the second project in the project list.
 ## **Features** in project scope
 
 ### **Task**-related features
-#### Check the project dashboard `dashboard `
-Shows a summary of the important information regarding the project.
+#### Check the task dashboard `viewtask INDEX`
+Shows a summary of the important information regarding the task.
+Format: `viewtask INDEX`
+- Shows the task at the specified INDEX.
+- The index refers to the index number shown in the task list displayed on the project dashboard.
+- The index must be a positive integer 1, 2, 3, …​
 
-Format: `dashboard`
+Examples: `viewtask 2` Shows the second task in the task list.
 
 #### List all tasks `list`
 
@@ -145,7 +152,7 @@ Instruction:
 
 Outcome: A list of tasks will be shown. 
 
-#### Delet a task `delete `
+#### Delete a task `delete `
 
 Deletes the specified task from your task list.
 
@@ -254,6 +261,15 @@ Outcome: All the meetings in the current project will be shown in the meeting li
 --------------------------------------------------------------------------------------------------------------------
 
 ### **Teammate**-related features
+#### Check the teammate dashboard `viewteammate INDEX`
+Shows a summary of the important information regarding the teammate.
+Format: `viewteammate INDEX`
+- Shows the teammate at the specified INDEX.
+- The index refers to the index number shown in the teammate list displayed on the project dashboard.
+- The index must be a positive integer 1, 2, 3, …​
+
+Examples: `viewteammate 2` Shows the second teammate in the teammate list.
+
 #### Create new teammate `new teammate `
 Adds a new teammate to a project
 
@@ -303,10 +319,20 @@ Format: `task participants TASK_NUMBER`
 Example: `task participants 1` Displays the teammates that are assigned to do task 1
 
 ### **Scoping**-related features
-#### Return to main catalogue `leave`
+#### Return to main catalogue `leaveProjectView`
 Switch to the scope of a level of higher hierarchy.
 
-Format: `leave`
+Format: `leaveProjectView`
+
+#### Return to project catalogue from task catalogue `leaveTaskView`
+Switch to the scope of a level of higher hierarchy.
+
+Format: `leaveTaskView`
+
+#### Return to project catalogue `leaveTeammateView`
+Switch to the scope of a level of higher hierarchy.
+
+Format: `leaveTeammateView`
 
 ## FAQ
 
@@ -322,7 +348,9 @@ Action | Format, Examples | Scope
 --------|------------------|-------
 **Get Help** | `help` | global scope
 **Add Project** | `add project n/NAME d/DUEDATE t/TEAM` <br> e.g., `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas` | global scope
-**Start** | `start INDEX`<br> e.g., `start 3` | global scope
+**Start and View Project Dashboard** | `start INDEX`<br> e.g., `start 3` | global scope
+**View Task Dashboard** | `viewtask INDEX`<br> e.g., `viewtask 3` | project scope
+**View Teammate Dashboard** | `viewteammate INDEX`<br> e.g., `viewteammate 3` | project scope
 **List Out The List Of Tasks** | `list` | project scope
 **Delete Task** | `delete INDEX` <br> eg. `delete 2` | project scope
 **Find KEYWORD** | `find KEYWORD` <br> eg. `find read` | project scope
@@ -338,5 +366,7 @@ Action | Format, Examples | Scope
 **Update Participation** | `updatept NAME [r/ROLE]` <br> e.g., `updatept Lucas r/LEADER` | project scope
 **Remove Teammate** | `removetm NAME` <br> e.g., `removetm Lucas` | project scope
 **View Teammates of Task** | `task participants TASK_NUMBER` <br> e.g., `task participants 1` | project scope
-**Return To Catalogue Page** | `leave` | project scope
+**Return To Catalogue Page** | `leaveProjectView` | project scope
+**Return To Project Catalogue Page** | `leaveTaskView` | task scope
+**Return To Project Catalogue Page** | `leaveTeammateView` | person scope
 
